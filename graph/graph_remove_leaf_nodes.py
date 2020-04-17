@@ -25,6 +25,24 @@ def remove_leaf_nodes(graph):
             if leaf in adj:
                 graph[n].remove(leaf)
 
+
+def remove_leaf_nodes2(graph):
+    """时间复杂度优化版本"""
+    leaf_nodes = []
+    for n, adj in graph.items():
+        if not adj:
+            leaf_nodes.append(n)
+        elif len(adj) == 1:
+            leaf_nodes.append(n)
+
+    for leaf in leaf_nodes:
+        del graph[leaf]
+
+    for leaf in leaf_nodes:
+        for n, adj in graph.items():
+            if leaf in adj:
+                graph[n].remove(leaf)
+
 if __name__ == '__main__':
     # 构建graph
     graph = {}
@@ -39,5 +57,6 @@ if __name__ == '__main__':
     graph['I'] = set(['E'])
     graph['J'] = set(['H'])
 
-    remove_leaf_nodes(graph)
+    # remove_leaf_nodes(graph)
+    remove_leaf_nodes2(graph)
     print(graph)
