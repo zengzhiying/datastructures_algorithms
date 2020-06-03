@@ -4,6 +4,7 @@
     classical - 一些经典算法问题
     encode - 编解码相关的算法
     graph - 图数据结构以及相关的算法
+    hash - 哈希表数据结构和哈希算法
     linear_list - 线性表数据结构以及相关的算法
     math - 数学计算中的算法
     search - 查找和搜索相关的算法
