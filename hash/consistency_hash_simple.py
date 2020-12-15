@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
-"""代码参考链接: 
+"""一致性hash的简单直接实现 代码参考链接: 
 https://yikun.github.io/2016/06/09/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/
+详细类封装代码在consistency-hash-package下
 """
 import hashlib
 import struct
