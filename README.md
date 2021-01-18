@@ -11,3 +11,6 @@
     sorting - 排序算法代码
     string - 字符串处理相关的算法
     tree - 树数据结构以及相关的算法(包括堆)
+    backtracking - 回溯法的一些算法问题
+    dynamic-programming - 动态规划的一些算法问题
+    divide-and-conquer - 分治法的一些算法问题
