@@ -124,6 +124,42 @@ def binary_search_last_lte(arr: list, value: int) -> int:
 
     return -1
 
+def binary_search_rotated_list(arr: list, target: int) -> int:
+    """利用二分搜索查找旋转(循环)数组中的元素
+    旋转数组就是最后1个元素的下一个元素第一个元素, 比如: [0,1,2,3,4,5,6,7]按照位置k=3旋转后变为:
+    [3,4,5,6,7,0,1,2]这样 给定的arr就是符合条件的旋转数组 当然k=0是退化为顺序数组
+    Args:
+        arr: 旋转列表
+        target: 要查找的目标元素
+    Returns:
+        查找成功返回下标
+        未找到元素则返回-1
+    """
+    if not arr:
+        return -1
+
+    l, r = 0, len(arr) - 1
+
+    while l <= r:
+        m = (l + r) // 2
+        if arr[m] == target:
+            return m
+
+        if arr[m] >= arr[l]:
+            # 左侧有序
+            if arr[l] <= target < arr[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        else:
+            # 右侧有序
+            if arr[m] < target <= arr[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
+
 
 
 if __name__ == '__main__':
@@ -148,4 +184,22 @@ if __name__ == '__main__':
     print(binary_search_first_gte(arr, 1))
     # 5
     print(binary_search_last_lte(arr, 100))
+
+    # 旋转数组测试
+    # 4
+    print(binary_search_rotated_list([4,5,6,7,0,1,2], 0))
+    # 10
+    print(binary_search_rotated_list([6,7,8,9,10,11,12,13,14,15,2,3,4,5], 2))
+    # 7
+    print(binary_search_rotated_list([1,2,3,4,5,6,7,8,9], 8))
+    # 0
+    print(binary_search_rotated_list([9], 9))
+    # 4
+    print(binary_search_rotated_list([4,5,6,7,8,1,2,3], 8))
+    # 1
+    print(binary_search_rotated_list([1, 0], 0))
+    # -1
+    print(binary_search_rotated_list([1,3,0], 2))
+    # 0
+    print(binary_search_rotated_list([1,3,0], 1))
 
