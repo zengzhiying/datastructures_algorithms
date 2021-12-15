@@ -1,4 +1,5 @@
 # coding=utf-8
+from collections import deque
 
 class ChainNode:
     """链式存储二叉树节点"""
@@ -37,6 +38,39 @@ def postorder_chain(node):
     # print(node.value)
     rs.append(node.value)
 
+def get_node_height(node):
+    """获取节点的高度 深度优先
+    """
+    if node is None:
+        return -1
+
+    return max(get_node_height(node.left), get_node_height(node.right)) + 1
+
+def get_node_height_level(node):
+    """获取节点的高度 广度优先-层序遍历
+    """
+    if node is None:
+        return -1
+
+    q = deque()
+    q.append(node)
+    height = -1
+    front, rear = 0, len(q)
+    while q:
+        node = q.popleft()
+        front += 1
+        if node.left:
+            q.append(node.left)
+        if node.right:
+            q.append(node.right)
+
+        if front == rear:
+            front, rear = 0, len(q)
+            height += 1
+
+    return height
+
+
 rs = []
 
 
@@ -65,5 +99,20 @@ if __name__ == '__main__':
     postorder_chain(chain_head)
     print('->'.join([str(v) for v in rs]))
     rs.clear()
+
+    print("Binary tree1 height: {}".format(get_node_height(chain_head)))
+    print("Binary tree1 height: {}".format(get_node_height_level(chain_head)))
+
+    root = ChainNode(3)
+    root.left = ChainNode(6)
+    root.right = ChainNode(9)
+    root.left.left = ChainNode(7)
+    root.right.left = ChainNode(11)
+    root.left.left.left = ChainNode(2)
+    root.left.left.left.left = ChainNode(1)
+    root.left.left.left.left.left = ChainNode(0)
+
+    print("Binary tree2 height: {}".format(get_node_height(root)))
+    print("Binary tree2 height: {}".format(get_node_height_level(root)))
     
 
