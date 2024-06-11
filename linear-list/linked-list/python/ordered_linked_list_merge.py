@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
-"""两个有序链表合并为1个链表"""
+"""两个有序链表合并"""
+
 class Node:
     """单向链表节点"""
     def __init__(self, v):
